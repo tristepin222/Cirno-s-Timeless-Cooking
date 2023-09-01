@@ -859,6 +859,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
+  item:
+    itemType: 0
+    name: 
+    description: 
+    icon: {fileID: 0}
 --- !u!114 &1544316969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -950,6 +955,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
+  item:
+    itemType: 0
+    name: frog
+    description: frog
+    icon: {fileID: 0}
 --- !u!114 &2052712954
 MonoBehaviour:
   m_ObjectHideFlags: 0
