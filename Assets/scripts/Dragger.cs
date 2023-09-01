@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler
 {
     [SerializeField] private Canvas canvas;
+    [SerializeField] private Item item;
+
     private RectTransform rectTransform;
     private Vector3 defaultPos;
-
+    private GameObject modal;
     private CanvasGroup canvasGroup;
 
     private void Awake()
@@ -39,4 +41,8 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
     }
 
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    {
+        Instantiate(modal, rectTransform.transform);
+    }
 }
