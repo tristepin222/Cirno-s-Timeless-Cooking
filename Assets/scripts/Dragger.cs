@@ -8,17 +8,25 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     [SerializeField] private Item item;
     [SerializeField] private GameObject modal;
 
+    private HandFollow handFollow;
     private RectTransform rectTransform;
     private Vector3 defaultPos;
     private CanvasGroup canvasGroup;
 
     private bool isModalPresent = false;
-    private bool deletable = false;
+
+    private Transform hand;
+    public bool deletable = false;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         defaultPos = rectTransform.anchoredPosition;
+    }
+    private void Start()
+    {
+        handFollow = FindObjectOfType<HandFollow>();
+        hand = GameObject.Find("Hand").transform;
     }
     public void ResetState()
     {
@@ -34,18 +42,17 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
+        transform.SetSiblingIndex(hand.GetSiblingIndex() - 2);
+        handFollow.Grab();
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
+        handFollow.Release();
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         rectTransform.anchoredPosition = defaultPos;
-        if (deletable)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
