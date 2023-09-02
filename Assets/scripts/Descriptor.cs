@@ -12,14 +12,14 @@ public class Descriptor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Dragger dragger = GetComponentInParent<Dragger>();
-        itemName.text = dragger.getItem().name;
-        itemDescription.text = dragger.getItem().description;
+        show();
     }
 
     // Update is called once per frame
-    void Update()
+    public void show()
     {
-        
+        Dragger dragger = GetComponentInParent<Dragger>();
+        itemName.text = dragger.getItem().name;
+        itemDescription.text = dragger.getItem().description;
     }
 }

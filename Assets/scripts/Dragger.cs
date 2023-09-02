@@ -13,11 +13,18 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     private CanvasGroup canvasGroup;
 
     private bool isModalPresent = false;
+    private bool deletable = false;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         defaultPos = rectTransform.anchoredPosition;
+    }
+    public void ResetState()
+    {
+        isModalPresent = false;
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
     }
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
@@ -35,7 +42,10 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         rectTransform.anchoredPosition = defaultPos;
-
+        if (deletable)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
@@ -44,13 +54,15 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+        transform.SetAsLastSibling();
         if (!isModalPresent) 
         {
             modal = Instantiate(modal, rectTransform.transform);
 
             isModalPresent = true;
         }
-        else{
+        else
+        {
             modal.SetActive(true);
         }
     }
@@ -58,6 +70,13 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     public Item getItem()
     {
         return item;
+    }
+
+    public void Cook()
+    {
+        item = item.Cook(null);
+        modal.GetComponent<Descriptor>().show();
+        deletable = true;
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
