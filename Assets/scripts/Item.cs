@@ -23,8 +23,8 @@ public class Item
         CookedNoodles,
         Rocks,
         RawEggs,
-        CookedEggs,
         Ice,
+        CookedEggs,
         DefrostedFrogs,
         MagiciansMushrooms,
         CookedMagiciansMushrooms,
@@ -32,6 +32,7 @@ public class Item
         CookedLocallySourcedSparrow,
         EarthRabbitMochi,
         MinorikosSweetPotatoes,
+        CookedMinorikosSweetPotatoes,
         ScarletDevilReserve,
         KappaCucumbers,
         MysteryPowder,
@@ -67,6 +68,7 @@ public class Item
             case ItemType.MysteryPlants: return new Item("Cooked mystery plant", description, ItemType.CookedMysteryPlants, icon);
             case ItemType.MagiciansMushrooms: return new Item("Cooked magician's mushroom", description, ItemType.CookedMagiciansMushrooms, icon);
             case ItemType.LocallySourcedSparrow: return new Item("Cooked locally sourced sparrow", description, ItemType.CookedLocallySourcedSparrow, icon);
+            case ItemType.MinorikosSweetPotatoes: return new Item("Cooked minoriko's sweet potatoes", description, ItemType.CookedMinorikosSweetPotatoes, icon);
             default: return new Item("Mystery poweder", description, ItemType.MysteryPowder, icon);
         }
     }
@@ -83,6 +85,7 @@ public class Item
             case ItemType.MysteryPlants: return true;
             case ItemType.MagiciansMushrooms: return true;
             case ItemType.LocallySourcedSparrow: return true;
+            case ItemType.MinorikosSweetPotatoes: return true;
             default: return false;
         }
     }
