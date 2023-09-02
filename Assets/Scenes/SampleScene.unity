@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 15
+    itemType: 16
     name: Locally sourced sparrow
     description: frog
     icon: {fileID: 0}
@@ -1019,7 +1019,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 316292060}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1544316966}
+        m_TargetAssemblyTypeName: Bowl, Assembly-CSharp
+        m_MethodName: Serve
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &316292060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,7 +1136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 23
+    itemType: 26
     name: Mystery box
     description: frog
     icon: {fileID: 0}
@@ -1367,7 +1379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 19
+    itemType: 22
     name: Kappa cucumbers
     description: frog
     icon: {fileID: 0}
@@ -1747,7 +1759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 24
+    itemType: 27
     name: Mystery grass
     description: frog
     icon: {fileID: 0}
@@ -1856,7 +1868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 16
+    itemType: 18
     name: Earth rabbit mochi
     description: frog
     icon: {fileID: 0}
@@ -2527,7 +2539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 22
+    itemType: 25
     name: Mystery can
     description: frog
     icon: {fileID: 0}
@@ -3122,7 +3134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 21
+    itemType: 24
     name: Mystery bottle
     description: frog
     icon: {fileID: 0}
@@ -3742,7 +3754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 12
+    itemType: 11
     name: Ice
     description: frog
     icon: {fileID: 0}
@@ -4228,7 +4240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 25
+    itemType: 28
     name: Mystery berries
     description: frog
     icon: {fileID: 0}
@@ -4580,7 +4592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 20
+    itemType: 23
     name: Mystery Powder
     description: frog
     icon: {fileID: 0}
@@ -4823,7 +4835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 18
+    itemType: 21
     name: Scarlet Devil reserve
     description: frog
     icon: {fileID: 0}
@@ -5813,7 +5825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 27
+    itemType: 30
     name: Mystery plants
     description: frog
     icon: {fileID: 0}
@@ -5922,7 +5934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 236561088}
   item:
-    itemType: 17
+    itemType: 19
     name: Minoriko's sweet potatoes
     description: frog
     icon: {fileID: 0}
