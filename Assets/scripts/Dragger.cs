@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler
+public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Canvas canvas;
     [SerializeField] private Item item;
+    [SerializeField] private GameObject modal;
 
     private RectTransform rectTransform;
     private Vector3 defaultPos;
-    private GameObject modal;
     private CanvasGroup canvasGroup;
 
+    private bool isModalPresent = false;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -43,6 +44,24 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        Instantiate(modal, rectTransform.transform);
+        if (!isModalPresent) 
+        {
+            modal = Instantiate(modal, rectTransform.transform);
+
+            isModalPresent = true;
+        }
+        else{
+            modal.SetActive(true);
+        }
+    }
+
+    public Item getItem()
+    {
+        return item;
+    }
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        modal.SetActive(false);
     }
 }

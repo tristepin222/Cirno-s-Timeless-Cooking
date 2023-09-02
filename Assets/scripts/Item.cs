@@ -12,9 +12,34 @@ public class Item
     public Sprite icon;
     public enum ItemType
     {
-        Coin,
-        XPOrb,
-        Weapon,
-        PassiveItem
+        RawFish,
+        CookedFish,
+        RawRice,
+        CookedRice,
+        RawBeef,
+        CookedBeef,
+        Bread,
+        RawNoodles,
+        CookedNoodles,
+        Rocks,
+        RawEggs,
+        CookedEggs,
+        Ice,
+        DefrostedFrogs,
+        MagiciansMushrooms,
+        LocallySourcedSparrow,
+        EarthRabbitMochi,
+        MinorikosSweetPotatoes,
+        ScarletDevilReserve,
+        KappaCucumbers,
+        MysteryPowder,
+        MysteryBottle,
+        MysteryCan,
+        MysteryBox,
+        MysteryGrass,
+        MysteryBerries,
+        CookedMysteryBerries,
+        MysteryPlants,
+        CookedMysteryPlants
     }
 }
