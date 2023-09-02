@@ -232,6 +232,11 @@ public class Bowl : MonoBehaviour, IDropHandler
             //trigger basic meal
             Debug.Log("masterpiece mochi meal");
         }
+        if (cookedBeef && cookedSweetPotatoes && cookedMysteryplants && mysterPowder)
+        {
+            //trigger basic meal
+            Debug.Log("good devil meal");
+        }
         if (cookedBeef && cookedSweetPotatoes && cookedMysteryplants && mysterPowder && scarletDevilReserve)
         {
             //trigger basic meal
