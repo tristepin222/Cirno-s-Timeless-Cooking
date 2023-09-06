@@ -7,15 +7,17 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     [SerializeField] private Canvas canvas;
     [SerializeField] private Item item;
     [SerializeField] private GameObject modal;
-
+    [SerializeField] private AudioSource grab;
+    [SerializeField] private Cooker cooker;
     private HandFollow handFollow;
     private RectTransform rectTransform;
     private Vector3 defaultPos;
     private CanvasGroup canvasGroup;
 
     private bool isModalPresent = false;
-
+    private bool blockt = false;
     private Transform hand;
+    private int index = 0;
     public bool deletable = false;
     private void Awake()
     {
@@ -25,8 +27,15 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     }
     private void Start()
     {
+        if (GlobalController.Instance.wasBad)
+        {
+            GlobalController.Instance.blockt = true;
+        }
+        GlobalController.Instance.isDragging = false;
+        cooker = GameObject.Find("Pot").GetComponent<Cooker>();
         handFollow = FindObjectOfType<HandFollow>();
         hand = GameObject.Find("Hand").transform;
+        index = transform.GetSiblingIndex();
     }
     public void ResetState()
     {
@@ -36,12 +45,19 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     }
     void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
     {
+
+        grab.Play();
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
     }
 
     void IDragHandler.OnDrag(PointerEventData eventData)
     {
+        if (item.IsCook())
+        {
+            cooker.ChangeSprite();
+        }
+        GlobalController.Instance.isDragging = true;
         transform.SetSiblingIndex(hand.GetSiblingIndex() - 2);
         handFollow.Grab();
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
@@ -49,10 +65,12 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     void IEndDragHandler.OnEndDrag(PointerEventData eventData)
     {
+        transform.SetSiblingIndex(index);
         handFollow.Release();
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
         rectTransform.anchoredPosition = defaultPos;
+        GlobalController.Instance.isDragging = false;
     }
 
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
@@ -61,16 +79,13 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        transform.SetAsLastSibling();
-        if (!isModalPresent) 
+        if (!GlobalController.Instance.isDragging)
         {
-            modal = Instantiate(modal, rectTransform.transform);
-
-            isModalPresent = true;
-        }
-        else
-        {
-            modal.SetActive(true);
+            if (!GlobalController.Instance.blockt)
+            {
+                modal.SetActive(true);
+                modal.GetComponent<Descriptor>().show(item);
+            }
         }
     }
 
@@ -82,7 +97,7 @@ public class Dragger : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     public void Cook()
     {
         item = item.Cook(null);
-        modal.GetComponent<Descriptor>().show();
+        modal.GetComponent<Descriptor>().show(item);
         deletable = true;
     }
 

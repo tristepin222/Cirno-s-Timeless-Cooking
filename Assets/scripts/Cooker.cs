@@ -7,6 +7,8 @@ public class Cooker : MonoBehaviour, IDropHandler
 {
     [SerializeField] List<Sprite> sprites = new List<Sprite>();
     [SerializeField] Color toastedColor;
+    [SerializeField] AudioSource grill;
+
     void IDropHandler.OnDrop(PointerEventData eventData)
     {
         if(eventData.pointerDrag != null)
@@ -14,6 +16,9 @@ public class Cooker : MonoBehaviour, IDropHandler
             Dragger dragger = eventData.pointerDrag.GetComponent<Dragger>();
             if (dragger.getItem().CanCook())
             {
+                GlobalController.Instance.isDragging = false;
+                GetComponent<Image>().sprite = sprites[1];
+                grill.Play();
                 GameObject item = Instantiate(eventData.pointerDrag.gameObject, transform.parent);
                 item.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
                 item.GetComponent<Image>().color = toastedColor;
@@ -22,5 +27,10 @@ public class Cooker : MonoBehaviour, IDropHandler
                 dragger.Cook();
             }
         }
+    }
+
+    public void ChangeSprite()
+    {
+        GetComponent<Image>().sprite = sprites[0];
     }
 }

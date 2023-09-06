@@ -12,6 +12,7 @@ public class HandFollow : MonoBehaviour
     [SerializeField] Sprite cirnoGrab;
     [SerializeField] Sprite handGrab;
     [SerializeField] Sprite handRelease;
+    [SerializeField] private Animator animator;
 
     private float time;
     private float seconds = 700;
@@ -32,7 +33,7 @@ public class HandFollow : MonoBehaviour
         {
             GetComponent<Image>().enabled = true;
             hand2.GetComponent<Image>().enabled = true;
-
+            animator.enabled = false;
             sr.sprite = cirnoGrab;
             hand.transform.position = Input.mousePosition;
 
@@ -54,6 +55,7 @@ public class HandFollow : MonoBehaviour
         }
         else
         {
+            animator.enabled = true;
             GetComponent<Image>().enabled = false;
             hand2.GetComponent<Image>().enabled = false;
             sr.sprite = defaultSprite;

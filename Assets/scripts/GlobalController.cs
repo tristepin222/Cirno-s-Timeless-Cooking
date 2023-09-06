@@ -9,6 +9,11 @@ public class GlobalController : MonoBehaviour
     public float soundValue;
     public bool hasLoadedScene;
     public GameObject menu;
+    public bool isDragging = false;
+    public int deathCount;
+    public string nextLine;
+    public bool wasBad;
+    public bool blockt;
     // Start is called before the first frame update
     private void Start()
     {
